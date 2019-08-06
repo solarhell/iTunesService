@@ -6,19 +6,12 @@ import (
 	"github.com/antchfx/htmlquery"
 	"github.com/imroc/req"
 	"github.com/smallnest/rpcx/server"
+	"github.com/solarhell/iTunesService/public"
 	"net/url"
 	"strings"
 )
 
-type Args struct {
-	Name string
-}
-
-type Reply struct {
-	URL string
-}
-
-func GetArtistPictureImageUrl(ctx context.Context, args *Args, reply *Reply) error {
+func GetArtistPictureImageUrl(ctx context.Context, args *public.Args, reply *public.Reply) error {
 	if args.Name == "" {
 		return errors.New("歌手名不能为空")
 	}
