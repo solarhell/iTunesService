@@ -9,6 +9,7 @@ import (
 	"context"
 	"errors"
 	"github.com/smallnest/rpcx/client"
+    "github.com/solarhell/iTunesService/public"
 	"log"
 )
 
@@ -17,11 +18,11 @@ func main()  {
 	xclient := client.NewXClient("iTunes", client.Failtry, client.RandomSelect, d, client.DefaultOption)
 	defer xclient.Close()
 
-	args := &Args{
+	args := &public.Args{
 		Name: "李志",
 	}
 
-	reply := &Reply{}
+	reply := &public.Reply{}
 	err := xclient.Call(context.Background(), "GetArtistPictureImageUrl", args, reply)
 	if err != nil {
 		log.Fatalf("failed to call: %v", err)
