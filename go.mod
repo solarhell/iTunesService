@@ -6,5 +6,5 @@ require (
 	github.com/antchfx/htmlquery v1.2.2
 	github.com/antchfx/xpath v1.0.0 // indirect
 	github.com/imroc/req v0.3.0
-	github.com/smallnest/rpcx v5.1.1
+	github.com/smallnest/rpcx v5.1.2
 )
