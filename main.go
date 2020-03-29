@@ -3,12 +3,13 @@ package main
 import (
 	"context"
 	"errors"
+	"net/url"
+	"strings"
+
 	"github.com/antchfx/htmlquery"
 	"github.com/imroc/req"
 	"github.com/smallnest/rpcx/server"
 	"github.com/solarhell/iTunesService/public"
-	"net/url"
-	"strings"
 )
 
 func GetArtistPictureImageUrl(ctx context.Context, args *public.Args, reply *public.Reply) error {
