@@ -18,7 +18,7 @@ import (
 
 	"github.com/antchfx/htmlquery"
 	"github.com/imroc/req"
-	pb "github.com/solarhell/iTunesService/proto/applemusic"
+	pb "github.com/solarhell/iTunesService/applemusic"
 	"google.golang.org/grpc"
 )
 
