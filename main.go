@@ -18,7 +18,7 @@ import (
 
 	"github.com/antchfx/htmlquery"
 	"github.com/imroc/req"
-	pb "github.com/solarhell/iTunesService/proto"
+	pb "github.com/solarhell/iTunesService/proto/applemusic"
 	"google.golang.org/grpc"
 )
 
@@ -93,7 +93,7 @@ func (*checkServer) GetArtistPicture(_ context.Context, input *pb.CheckRequest) 
 	return &pb.CheckReply{Picture: imageProcessed}, nil
 }
 
-const GRPC_PORT = 50051
+const grpcPort = 50051
 
 func main() {
 	grpcServer := grpc.NewServer()
@@ -102,8 +102,8 @@ func main() {
 	reflection.Register(grpcServer)
 
 	go func() {
-		log.Printf("grpc server is on 127.0.0.1:%d\n", GRPC_PORT)
-		lis, err := net.Listen("tcp", fmt.Sprintf(":%d", GRPC_PORT))
+		log.Printf("grpc server is on 127.0.0.1:%d\n", grpcPort)
+		lis, err := net.Listen("tcp", fmt.Sprintf(":%d", grpcPort))
 		if err != nil {
 			log.Fatalf("start grpc server error: %v", err)
 		}
