@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package appleMusic;
+
+service Music {
+    rpc GetArtistPicture (CheckRequest) returns (CheckReply) {
+    };
+}
+
+message CheckRequest {
+    string artistName = 1;
+}
+
+message CheckReply {
+    string picture = 1;
+}
