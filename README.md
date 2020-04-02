@@ -7,28 +7,37 @@ package main
 
 import (
 	"context"
-	"errors"
-	"github.com/smallnest/rpcx/client"
-    "github.com/solarhell/iTunesService/public"
 	"log"
+	"time"
+
+	pb "github.com/solarhell/iTunesService/applemusic"
+	"google.golang.org/grpc"
 )
 
-func main()  {
-	d := client.NewPeer2PeerDiscovery("tcp@localhost:8972", "")
-	xclient := client.NewXClient("iTunes", client.Failtry, client.RandomSelect, d, client.DefaultOption)
-	defer xclient.Close()
+func main() {
+	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(ctx, 5*time.Second)
+	defer cancel()
 
-	args := &public.Args{
-		Name: "李志",
-	}
-
-	reply := &public.Reply{}
-	err := xclient.Call(context.Background(), "GetArtistPictureImageUrl", args, reply)
+	conn, err := grpc.DialContext(
+		ctx,
+		"103.121.209.132:50051",
+		grpc.WithInsecure(),
+		grpc.WithBlock(),
+	)
 	if err != nil {
-		log.Fatalf("failed to call: %v", err)
+		panic(err)
 	}
 
-	log.Println(reply.URL)
-}
+	appleMusic := pb.NewMusicClient(conn)
+	ctx, cancel = context.WithTimeout(ctx, 5*time.Second)
+	defer cancel()
 
+	reply, err := appleMusic.GetArtistPicture(ctx, &pb.CheckRequest{ArtistName: "李志"})
+	if err != nil {
+		panic(err)
+	}
+
+	log.Printf("获取到歌手照片: %s\n", reply.Picture)
+}
 ```
