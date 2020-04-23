@@ -8,5 +8,5 @@ require (
 	github.com/gogo/protobuf v1.3.1
 	github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e // indirect
 	github.com/imroc/req v0.3.0
-	google.golang.org/grpc v1.28.1
+	google.golang.org/grpc v1.29.0
 )
